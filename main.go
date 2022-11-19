@@ -1,10 +1,25 @@
 package main
 
 func main() {
-	SvgTest()
+	//b := newTdyBoard()
+	//b.run()
+	//drawTest()
 
-	b := newTdyBoard()
-	b.run()
+	board := newTdyBoard(20, 20)
+	board.print()
+	br := newBoardRenderer(board, 2)
+	br.boardToPng()
+	br.save()
+
+	/*
+		tt := newTilesTetris()
+		b := newBoardRenderer(100, 100)
+		b.drawTile(tt.up(), 1, 1)
+		b.drawTile(tt.down(), 2, 2)
+		b.save()
+	*/
+
+	//SvgTest()
 	/*
 		b.print()
 		for i := 1; i < 30; i++ {

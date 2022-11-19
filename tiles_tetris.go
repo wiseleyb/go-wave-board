@@ -15,7 +15,18 @@ func (t TilesTetris) tiles() Tiles {
 		t.up(),
 		t.down(),
 		t.left(),
-		t.right())
+		t.right(),
+		t.cornerBottomLeft(),
+		t.cornerBottomRight(),
+		t.cornerTopLeft(),
+		t.cornerTopRight(),
+		t.horizontal(),
+		t.vertical(),
+		t.endUp(),
+		t.endDown(),
+		t.endLeft(),
+		t.endRight(),
+		t.cross())
 
 	tt.nullTile = t.null()
 
@@ -31,6 +42,17 @@ func newTilesTetris() TilesTetris {
 	tt.m["down"] = tt.down()
 	tt.m["left"] = tt.left()
 	tt.m["right"] = tt.right()
+	tt.m["cornerBottomLeft"] = tt.cornerBottomLeft()
+	tt.m["cornerBottomRight"] = tt.cornerBottomRight()
+	tt.m["cornerTopLeft"] = tt.cornerTopLeft()
+	tt.m["cornerTopRight"] = tt.cornerTopRight()
+	tt.m["horizontal"] = tt.horizontal()
+	tt.m["vertical"] = tt.vertical()
+	tt.m["endUp"] = tt.endUp()
+	tt.m["endDown"] = tt.endDown()
+	tt.m["endLeft"] = tt.endLeft()
+	tt.m["endRight"] = tt.endRight()
+	tt.m["cross"] = tt.cross()
 	return tt
 }
 
@@ -79,6 +101,83 @@ func (t TilesTetris) right() Tile {
 		  _XX
 		  _X_`
 	return newTile(stringToArr(s), "right")
+}
+
+func (t TilesTetris) cornerTopLeft() Tile {
+	s := `_X_
+		  XX_
+		  ___`
+	return newTile(stringToArr(s), "corner-top-left")
+}
+
+func (t TilesTetris) cornerTopRight() Tile {
+	s := `_X_
+		  _XX
+		  ___`
+	return newTile(stringToArr(s), "corner-top-right")
+}
+
+func (t TilesTetris) cornerBottomLeft() Tile {
+	s := `___
+		  XX_
+		  _X_`
+	return newTile(stringToArr(s), "corner-bottom-left")
+}
+
+func (t TilesTetris) cornerBottomRight() Tile {
+	s := `___
+		  _XX
+		  _X_`
+	return newTile(stringToArr(s), "corner-bottom-right")
+}
+
+func (t TilesTetris) horizontal() Tile {
+	s := `___
+		  XXX
+		  ___`
+	return newTile(stringToArr(s), "horizontal")
+}
+
+func (t TilesTetris) vertical() Tile {
+	s := `_X_
+		  _X_
+		  _X_`
+	return newTile(stringToArr(s), "vertical")
+}
+
+func (t TilesTetris) endUp() Tile {
+	s := `_X_
+		  _X_
+		  ___`
+	return newTile(stringToArr(s), "endUp")
+}
+
+func (t TilesTetris) endDown() Tile {
+	s := `___
+		  _X_
+		  _X_`
+	return newTile(stringToArr(s), "endDown")
+}
+
+func (t TilesTetris) endLeft() Tile {
+	s := `___
+		  XX_
+		  ___`
+	return newTile(stringToArr(s), "endLeft")
+}
+
+func (t TilesTetris) endRight() Tile {
+	s := `___
+		  _XX
+		  ___`
+	return newTile(stringToArr(s), "endRight")
+}
+
+func (t TilesTetris) cross() Tile {
+	s := `_X_
+		  XXX
+		  _X_`
+	return newTile(stringToArr(s), "cross")
 }
 
 func stringToArr(str string) [][]string {

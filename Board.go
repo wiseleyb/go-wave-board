@@ -6,16 +6,33 @@ import (
 )
 
 type Board struct {
-	cols    int
-	rows    int
-	grid    [][]Tile
-	scores  [][]int
-	tiles   Tiles
-	matches map[int][]MatchSet
+	cols        int
+	rows        int
+	grid        [][]Tile
+	scores      [][]int
+	tiles       Tiles
+	tileWidth   int
+	tileHeight  int
+	tileSize    int
+	boardWidth  int
+	boardHeight int
+	matches     map[int][]MatchSet
 }
 
 func newBoard(cols int, rows int, tiles Tiles) Board {
-	b := Board{}
+	b := Board{
+		cols:        cols,
+		rows:        rows,
+		grid:        [][]Tile{},
+		scores:      [][]int{},
+		tiles:       tiles,
+		tileWidth:   0,
+		tileHeight:  0,
+		tileSize:    0,
+		boardWidth:  0,
+		boardHeight: 0,
+		matches:     map[int][]MatchSet{},
+	}
 	b.cols = cols
 	b.rows = rows
 	b.grid = make([][]Tile, b.rows)
@@ -25,14 +42,21 @@ func newBoard(cols int, rows int, tiles Tiles) Board {
 		b.scores[i] = make([]int, b.cols)
 	}
 	b.tiles = tiles
+	b.tileWidth = 3
+	b.tileHeight = 3
+	b.tileSize = 3
+	b.boardWidth = b.cols * b.tileWidth
+	b.boardHeight = b.rows * b.tileHeight
 	b.initBoard()
+	b.run()
 	return b
 }
 
 func (b *Board) run() {
 	for {
 		if b.applyMatch() {
-			b.print()
+			//b.print()
+			//BoardToPng(b)
 			return
 		}
 	}
@@ -102,7 +126,7 @@ func (b *Board) applyMatch() bool {
 	tileCnt := len(matchSet.tiles)
 	if tileCnt > 0 {
 		b.grid[matchSet.row][matchSet.col] = matchSet.tiles[newRnd(len(matchSet.tiles))]
-		b.print()
+		//b.print()
 		return false
 	} else {
 		fmt.Println("done")
@@ -175,8 +199,8 @@ func (b Board) printScores() {
 	}
 }
 
-func newTdyBoard() Board {
+func newTdyBoard(width int, height int) Board {
 	// TidByt is 62x32
 	// 3x3 of that is 21x10
-	return newBoard(21, 10, newTilesTetris().tiles())
+	return newBoard(width, height, newTilesTetris().tiles())
 }

@@ -32,7 +32,7 @@ func SvgTest() {
 	//ctx.CubeTo(10, 10, 20, 20, 30, 30)
 
 	drawPos(ctx, 10, 10)
-	drawPos(ctx, 30, 50)
+	drawPos(ctx, 30, 10)
 	drawPos(ctx, 0, 10)
 	drawPos(ctx, 40, 20)
 
