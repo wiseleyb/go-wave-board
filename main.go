@@ -1,6 +1,8 @@
 package main
 
 func main() {
+	SvgTest()
+
 	b := newTdyBoard()
 	b.run()
 	/*
