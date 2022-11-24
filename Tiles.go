@@ -5,10 +5,10 @@ type Tiles struct {
 	tiles    []Tile
 }
 
-func newTiles(tiles []Tile, nullTile Tile) Tiles {
+func newTiles(tiles []Tile) Tiles {
 	t := Tiles{}
 	t.tiles = tiles
-	t.nullTile = nullTile
+	t.nullTile = newTileUniform(len(t.tiles[0].tile[0]), ".", "null")
 	return t
 }
 

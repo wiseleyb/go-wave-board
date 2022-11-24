@@ -4,9 +4,6 @@ tiles:
   blank: |
     __
     __
-  "null": |
-    ..
-    ..
   topRight: |
     _X
     __

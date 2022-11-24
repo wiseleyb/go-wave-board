@@ -1,19 +1,21 @@
 package main
 
-import "fmt"
-
 func main() {
-	board := newBoardFromYaml(20, 20, "tile-sets/ts-tetris.yaml")
-	//board := newBoardFromYaml(20, 20, "tile-sets/ts-4x4.yaml")
-	//board := newBoardFromYaml(20, 20, "tile-sets/ts-tetris2.yaml")
-	board.print()
-	fmt.Println(board.tiles)
-	br := newBoardRenderer(board, 3)
-	br.boardToPng()
-	br.save()
-	board.print()
-	fmt.Println(board.tileSize)
-
+	GrnTest()
+	/*
+		fname := "tmp/wave.png"
+		//board := newBoardFromYaml(20, 20, "tile-sets/ts-tetris.yaml")
+		//board := newBoardFromYaml(20, 20, "tile-sets/ts-4x4.yaml")
+		//board := newBoardFromYaml(20, 20, "tile-sets/ts-tetris2.yaml")
+		board := newBoardFromYaml(20, 20, "tile-sets/ts-5x5.yaml")
+		board.print()
+		fmt.Println(board.tiles)
+		br := newBoardRenderer(board, 4)
+		br.boardToPng()
+		br.save(fname)
+		board.print()
+		fmt.Println(board.tileSize)
+	*/
 	/*
 		board := newTdyBoard(20, 20)
 		board.print()

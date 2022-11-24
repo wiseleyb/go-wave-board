@@ -1,6 +1,7 @@
 package main
 
 import (
+	"bytes"
 	"fmt"
 	"strings"
 )
@@ -19,6 +20,19 @@ func newTile(tile [][]string, slug string) Tile {
 	t.rows = len(tile)
 	t.cols = len(tile[0])
 	return t
+}
+
+func newTileUniform(dimensions int, char string, name string) Tile {
+	var res []string
+	for i := 0; i < dimensions; i++ {
+		var line bytes.Buffer
+		for j := 0; j < dimensions; j++ {
+			line.WriteString(char)
+		}
+		res = append(res, line.String())
+	}
+	stile := strings.Join(res, "\n")
+	return newTile(stringToArr(stile), name)
 }
 
 func (t Tile) edgeMatch(direction string, tile Tile) bool {
@@ -88,4 +102,39 @@ func (t Tile) print() {
 		fmt.Println(row)
 	}
 	fmt.Println("")
+}
+
+func stringToArr(str string) [][]string {
+	arr := jsondata(strings.Split(str, "\n"))
+	arr.delete("")
+	cols := len(strings.TrimSpace(arr[0]))
+	rows := len(arr)
+	res := make([][]string, cols)
+	//fmt.Println(arr, cols, rows)
+	for i := 0; i < cols; i++ {
+		res[i] = make([]string, rows)
+	}
+	for row := 0; row < rows; row++ {
+		rowstr := jsondata(strings.Split(strings.TrimSpace(arr[row]), ""))
+		rowstr.delete("")
+		//fmt.Println(rowstr)
+		for col := 0; col < cols; col++ {
+			fmt.Println(row, col)
+			res[row][col] = rowstr[col]
+		}
+	}
+	// fmt.Println(res)
+	return res
+}
+
+type jsondata []string
+
+func (j *jsondata) delete(selector string) {
+	var r jsondata
+	for _, str := range *j {
+		if str != selector {
+			r = append(r, str)
+		}
+	}
+	*j = r
 }

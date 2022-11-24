@@ -29,19 +29,14 @@ func yamlToTiles(yamlFileName string) Tiles {
 
 	tiles := reflect.ValueOf(data["tiles"])
 	tt := Tiles{}
-	var nullTile Tile
 	for _, k := range tiles.MapKeys() {
 		v := tiles.MapIndex(k)
 		vs := v.Interface().(string)
 		ks := k.Interface().(string)
 		//fmt.Println(vs, ks)
 		t := newTile(stringToArr(vs), ks)
-		if ks == "null" {
-			nullTile = t
-		} else {
-			tt.tiles = append(tt.tiles, t)
-		}
+		tt.tiles = append(tt.tiles, t)
 	}
 	//fmt.Println(tt)
-	return newTiles(tt.tiles, nullTile)
+	return newTiles(tt.tiles)
 }

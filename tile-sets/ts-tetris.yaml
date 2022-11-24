@@ -5,10 +5,6 @@ tiles:
     ___
     ___
     ___
-  "null": |
-    ...
-    ...
-    ...
   up: |
     _X_
     XXX
@@ -69,3 +65,15 @@ tiles:
     ___
     _XX
     ___
+  box: |
+    XXX
+    X_X
+    XXX
+  dot: |
+    ___
+    _X_
+    ___
+  corners: |
+    X_X
+    _X_
+    X_X

@@ -1,0 +1,39 @@
+name: '5x5'
+tile_size: 5
+tiles:
+  blank: |
+    _____
+    _____
+    _____
+    _____
+    _____
+  cross: |
+    _X_X_
+    XXXXX
+    _X_X_
+    XXXXX
+    _X_X_
+  topRight: |
+    _X_X_
+    _XXXX
+    _X_X_
+    _XXXX
+    _____
+  topLeft: |
+    _X_X_
+    XXXX_
+    _X_X_
+    XXXX_
+    _____
+  bottomLeft: |
+    _____
+    XXXX_
+    _X_X_
+    XXXX_
+    _X_X_
+  bottomRight: |
+    _____
+    _XXXX
+    _X_X_
+    _XXXX
+    _X_X_

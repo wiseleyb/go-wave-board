@@ -2,20 +2,23 @@ package main
 
 import (
 	"fmt"
+	"image/color"
 
 	"github.com/tdewolff/canvas"
 	"github.com/tdewolff/canvas/renderers"
 )
 
 type BoardRenderer struct {
-	board     Board
-	scale     int
-	height    int
-	width     int
-	cc        *canvas.Canvas
-	ctx       *canvas.Context
-	tileSize  int
-	tileWidth int
+	colors       [7]color.RGBA
+	defaultColor color.RGBA
+	board        Board
+	scale        int
+	height       int
+	width        int
+	cc           *canvas.Canvas
+	ctx          *canvas.Context
+	tileSize     int
+	tileWidth    int
 }
 
 func newBoardRenderer(board Board, scale int) BoardRenderer {
@@ -27,11 +30,21 @@ func newBoardRenderer(board Board, scale int) BoardRenderer {
 	b.scale = scale
 	b.tileSize = board.tileSize
 	b.tileWidth = scale
+
+	b.colors[0] = canvas.Red
+	b.colors[1] = canvas.Orange
+	b.colors[2] = canvas.Yellow
+	b.colors[3] = canvas.Green
+	b.colors[4] = canvas.Blue
+	b.colors[5] = canvas.Indigo
+	b.colors[6] = canvas.Purple
+	b.defaultColor = canvas.Lightblue
+
 	return b
 }
 
-func (b BoardRenderer) save() {
-	renderers.Write("tmp/wave.png", b.cc, canvas.DPMM(10.2))
+func (b BoardRenderer) save(fname string) {
+	renderers.Write(fname, b.cc, canvas.DPMM(10.2))
 }
 
 func (b BoardRenderer) boardToPng() {
@@ -44,6 +57,10 @@ func (b BoardRenderer) boardToPng() {
 	}
 }
 
+func (b BoardRenderer) rndColor() color.RGBA {
+	return b.colors[newRnd(6)]
+}
+
 func (b BoardRenderer) drawTile(t Tile, xint int, yint int) {
 	fmt.Println("tile:", t.slug)
 	t.print()
@@ -51,7 +68,9 @@ func (b BoardRenderer) drawTile(t Tile, xint int, yint int) {
 	if t.slug == "null" {
 		b.ctx.SetFillColor(canvas.Lightgray)
 	} else {
-		b.ctx.SetFillColor(canvas.Lightblue)
+		//b.ctx.SetFillColor(canvas.Lightblue)
+		//b.ctx.SetFillColor(b.rndColor())
+		b.ctx.SetFillColor(b.defaultColor)
 	}
 	b.ctx.SetStrokeColor(canvas.Transparent)
 
