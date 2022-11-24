@@ -181,15 +181,18 @@ func (t TilesTetris) cross() Tile {
 }
 
 func stringToArr(str string) [][]string {
-	arr := strings.Split(str, "\n")
+	arr := jsondata(strings.Split(str, "\n"))
+	arr.delete("")
 	cols := len(strings.TrimSpace(arr[0]))
 	rows := len(arr)
 	res := make([][]string, cols)
+	//fmt.Println(arr, cols, rows)
 	for i := 0; i < cols; i++ {
 		res[i] = make([]string, rows)
 	}
 	for row := 0; row < rows; row++ {
-		rowstr := strings.Split(strings.TrimSpace(arr[row]), "")
+		rowstr := jsondata(strings.Split(strings.TrimSpace(arr[row]), ""))
+		rowstr.delete("")
 		//fmt.Println(rowstr)
 		for col := 0; col < cols; col++ {
 			res[row][col] = rowstr[col]
@@ -197,4 +200,16 @@ func stringToArr(str string) [][]string {
 	}
 	// fmt.Println(res)
 	return res
+}
+
+type jsondata []string
+
+func (j *jsondata) delete(selector string) {
+	var r jsondata
+	for _, str := range *j {
+		if str != selector {
+			r = append(r, str)
+		}
+	}
+	*j = r
 }

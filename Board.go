@@ -42,9 +42,9 @@ func newBoard(cols int, rows int, tiles Tiles) Board {
 		b.scores[i] = make([]int, b.cols)
 	}
 	b.tiles = tiles
-	b.tileWidth = 3
-	b.tileHeight = 3
-	b.tileSize = 3
+	b.tileWidth = tiles.tiles[0].cols
+	b.tileHeight = tiles.tiles[0].rows
+	b.tileSize = tiles.tiles[0].cols
 	b.boardWidth = b.cols * b.tileWidth
 	b.boardHeight = b.rows * b.tileHeight
 	b.initBoard()
@@ -109,6 +109,7 @@ func (b *Board) scoreBoard() {
 
 func (b *Board) applyMatch() bool {
 	b.scoreBoard()
+	//b.printScores()
 	keys := make([]int, 0, len(b.matches))
 	for k := range b.matches {
 		keys = append(keys, k)
@@ -203,4 +204,10 @@ func newTdyBoard(width int, height int) Board {
 	// TidByt is 62x32
 	// 3x3 of that is 21x10
 	return newBoard(width, height, newTilesTetris().tiles())
+}
+
+func newBoardFromYaml(width int, height int, yamlFileName string) Board {
+	board := newBoard(width, height, yamlToTiles(yamlFileName))	
+	fmt.Println(board.tiles)
+	return board
 }

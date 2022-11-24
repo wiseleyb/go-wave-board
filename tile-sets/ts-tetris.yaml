@@ -1,0 +1,71 @@
+name: 'tetris'
+tile_size: 3
+tiles:
+  blank: |
+    ___
+    ___
+    ___
+  "null": |
+    ...
+    ...
+    ...
+  up: |
+    _X_
+    XXX
+    ___
+  down: |
+    ___
+    XXX
+    _X_
+  left: |
+    _X_
+    XX_
+    _X_
+  right: |
+    _X_
+    _XX
+    _X_
+  cross: |
+    _X_
+    XXX
+    _X_
+  horizontal: |
+    ___
+    XXX
+    ___
+  vertical: |
+    _X_
+    _X_
+    _X_
+  cornerTopLeft: |
+    _X_
+    XX_
+    ___
+  cornerTopRight: |
+    _X_
+    _XX
+    ___
+  cornerBottomLeft: |
+    ___
+    XX_
+    _X_
+  cornerBottomRight: |
+    ___
+    _XX
+    _X_
+  endUp: |
+    _X_
+    _X_
+    ___
+  endDown: |
+    ___
+    _X_
+    _X_
+  endLeft: |
+    ___
+    XX_
+    ___
+  endRight: |
+    ___
+    _XX
+    ___

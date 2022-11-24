@@ -1,0 +1,54 @@
+name: '4x4'
+tile_size: 2
+tiles:
+  blank: |
+    __
+    __
+  "null": |
+    ..
+    ..
+  topRight: |
+    _X
+    __
+  topLeft: |
+    X_
+    __
+  bottomRight: |
+    __
+    _X
+  bottomLeft: |
+    __
+    X_
+  up: |
+    XX
+    __
+  down: |
+    __
+    XX
+  left: |
+    X_
+    X_
+  right: |
+    _X
+    _X
+  full: |
+    XX
+    XX
+  cross1: |
+    _X
+    X_
+  cross2: |
+    X_
+    _X
+  cornerTopLeft: |
+    XX
+    X_
+  cornerTopRight: |
+    XX
+    _X
+  cornerBottomLeft: |
+    X_
+    XX
+  cornerBottomRight: |
+    _X
+    XX

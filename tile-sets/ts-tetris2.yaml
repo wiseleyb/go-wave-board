@@ -1,0 +1,27 @@
+name: 'tetris2'
+tile_size: 3
+tiles:
+  blank: |
+    ___
+    ___
+    ___
+  "null": |
+    ...
+    ...
+    ...
+  up: |
+    ___
+    _X_
+    XXX
+  down: |
+    XXX
+    _X_
+    ___
+  left: |
+    __X
+    _XX
+    __X
+  right: |
+    X__
+    XX_
+    X__
